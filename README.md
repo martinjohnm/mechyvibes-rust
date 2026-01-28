@@ -23,3 +23,23 @@ The application plays realistic mechanical keyboard sounds (key press / release)
 - 🛡️ Memory-safe and data-race-free by design
 
 - 🦀 Built entirely in Rust
+
+## Architecture
+
+RustyVies is built around an event-driven, concurrent pipeline:
+
+![Descriptive alt text](architecture.png)
+
+## Why channels?
+
+- Keyboard events are produced rapidly and asynchronously
+
+- Audio playback must be non-blocking
+
+- Channels allow:
+
+  - decoupling input capture from audio playback
+
+  - clean separation of responsibilities
+
+  - safe concurrency without shared mutable state
